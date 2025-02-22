@@ -1,5 +1,6 @@
 'use client'
 import React, { useState, useEffect, useCallback } from 'react';
+import StartButton from '@/components/ui/buttons/start-button';
 
 export default function TickTackToe() {
     const [board, setBoard] = useState(Array(9).fill(null));
@@ -55,16 +56,9 @@ export default function TickTackToe() {
     return (
         <div className='font-["Protest_Strike"]'>
             <h1 className="mt-12 text-blue-600 text-4xl text-center">Tick Tack Toe</h1>
-            <div className="flex justify-center mb-5">
-                <button
-                    className="bg-blue-600 hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-200 m-8 px-5 py-2.5 rounded text-white text-xl transition-all"
-                    onClick={startGame}
-                >
-                    Start Game
-                </button>
-            </div>
-
-            <div className="gap-2.5 grid grid-cols-3 bg-white mx-auto my-5 p-5 rounded-lg w-[300px]">
+         
+            <StartButton resetGame={startGame} />
+            <div className="justify-items-center items-center gap-2.5 grid grid-cols-3 bg-white mx-auto p-5 rounded-lg">
                 {board.map((value, index) => (
                     <button
                         key={index}
