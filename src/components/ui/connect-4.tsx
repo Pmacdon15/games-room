@@ -1,14 +1,14 @@
 'use client'
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 
 export default function Connect4() {
 
     const [board, setBoard] = useState(Array(6).fill(null).map(() => Array(7).fill(null)));
     const [isPlayer1Turn, setIsPlayer1Turn] = useState(true);
-    const [winner, setWinner] = useState<string | null>(null);
+    // const [winner, setWinner] = useState<string | null>(null);
 
     const handleCellClick = (rowIndex: number, cellIndex: number) => {
-        if (winner || board[rowIndex][cellIndex]) return;
+        // if (winner || board[rowIndex][cellIndex]) return;
 
         const newBoard = [...board];
         newBoard[rowIndex][cellIndex] = isPlayer1Turn ? 'X' : 'O';
