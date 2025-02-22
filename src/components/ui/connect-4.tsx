@@ -25,8 +25,8 @@ export default function Connect4() {
 
     const checkWinnerOrDraw = useCallback(() => {
         console.log("running checkWinnerOrDraw");
-        let winnerRow = checkRows();
-        let winnerColumn = checkColumns();
+        const winnerRow = checkRows();
+        const winnerColumn = checkColumns();
 
         if (board.flat().every(cell => cell !== null)) return 'Nobody';
 
