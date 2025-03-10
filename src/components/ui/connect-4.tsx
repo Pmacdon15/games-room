@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useState, useCallback } from 'react';
 import StartButton from '@/components/ui/buttons/start-button';
+import { get } from 'http';
 export default function Connect4() {
 
     const [board, setBoard] = useState(Array(6).fill(null).map(() => Array(7).fill(null)));
@@ -15,12 +16,19 @@ export default function Connect4() {
 
     const handleCellClick = (rowIndex: number, cellIndex: number) => {
         if (winner || board[rowIndex][cellIndex]) return;
-
+        const lowestEmptyRow = getLowestEmptyRow(cellIndex);
         const newBoard = [...board];
-        newBoard[rowIndex][cellIndex] = isPlayer1Turn ? 'X' : 'O';
+        newBoard[lowestEmptyRow][cellIndex] = isPlayer1Turn ? 'X' : 'O';
         setBoard(newBoard);
         setIsPlayer1Turn(!isPlayer1Turn);
         checkWinnerOrDraw();
+    };
+
+    const getLowestEmptyRow = (column: number) => {
+        for (let i = 5; i >= 0; i--) {
+            if (board[i][column] === null) return i;
+        }
+        return -1;
     };
 
     const checkWinnerOrDraw = useCallback(() => {
