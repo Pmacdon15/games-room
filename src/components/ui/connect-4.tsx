@@ -31,20 +31,7 @@ export default function Connect4() {
         return -1;
     };
 
-    const checkWinnerOrDraw = useCallback(() => {
-        console.log("running checkWinnerOrDraw");
-        const winnerRow = checkRows();
-        const winnerColumn = checkColumns();
-        const winnerDiagonalsTopLeft = checkDiagonalsTopLeft();
-        const winnerDiagonalTopRight = checkDiagonalsTopRight();
-
-        if (board.flat().every(cell => cell !== null)) return 'Nobody';
-
-        return winnerRow || winnerColumn || winnerDiagonalsTopLeft || winnerDiagonalTopRight || null;
-        
-    }, [board]);
-
-    function checkRows() {
+    const checkRows = useCallback((): string | undefined => {
         console.log("running checkRows");
         for (let i = 0; i < 6; i++) {
             for (let j = 0; j < 4; j++) {
@@ -56,9 +43,9 @@ export default function Connect4() {
                 }
             }
         }
-    }
+    }, [board]);
 
-    function checkColumns() {
+    const checkColumns = useCallback((): string | undefined => {
         for (let i = 0; i < 3; i++) {
             for (let j = 0; j < 7; j++) {
                 if (board[i][j] === board[i + 1][j] && board[i][j] === board[i + 2][j] && board[i][j] === board[i + 3][j] && board[i][j] !== null && board[i][j] !== 0) {
@@ -66,9 +53,9 @@ export default function Connect4() {
                 }
             }
         }
-    }
+    }, [board]);
 
-    function checkDiagonalsTopLeft() {
+    const checkDiagonalsTopLeft = useCallback((): string | undefined => {
         for (let i = 0; i < 3; i++) {
             for (let j = 0; j < 4; j++) {
                 if (board[i][j] === board[i + 1][j + 1] && board[i][j] === board[i + 2][j + 2] && board[i][j] === board[i + 3][j + 3] && board[i][j] !== null && board[i][j] !== 0) {
@@ -76,9 +63,9 @@ export default function Connect4() {
                 }
             }
         }
-    }
+    }, [board]);
 
-    function checkDiagonalsTopRight() {
+    const checkDiagonalsTopRight = useCallback((): string | undefined => {
         for (let i = 0; i < 3; i++) {
             for (let j = 6; j > 2; j--) {
                 if (board[i][j] === board[i + 1][j - 1] && board[i][j] === board[i + 2][j - 2] && board[i][j] === board[i + 3][j - 3] && board[i][j] !== null && board[i][j] !== 0) {
@@ -86,7 +73,21 @@ export default function Connect4() {
                 }
             }
         }
-    }
+    }, [board]);
+
+    const checkWinnerOrDraw = useCallback(() => {
+        console.log("running checkWinnerOrDraw");
+        const winnerRow = checkRows();
+        const winnerColumn = checkColumns();
+        const winnerDiagonalsTopLeft = checkDiagonalsTopLeft();
+        const winnerDiagonalTopRight = checkDiagonalsTopRight();
+
+        if (board.flat().every(cell => cell !== null)) return 'Nobody';
+
+        return winnerRow || winnerColumn || winnerDiagonalsTopLeft || winnerDiagonalTopRight || null;
+
+    }, [board, checkRows, checkColumns, checkDiagonalsTopLeft, checkDiagonalsTopRight]);
+
 
     useEffect(() => {
         function checkGameOver() {
