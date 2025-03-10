@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import StartButton from '@/components/ui/buttons/start-button';
 
 export default function Connect4() {
@@ -21,7 +21,7 @@ export default function Connect4() {
         newBoard[lowestEmptyRow][cellIndex] = isPlayer1Turn ? 'X' : 'O';
         setBoard(newBoard);
         setIsPlayer1Turn(!isPlayer1Turn);
-        checkWinnerOrDraw();
+        checkWinnerOrDraw();      
     };
 
     const getLowestEmptyRow = (column: number) => {
@@ -84,21 +84,10 @@ export default function Connect4() {
 
         if (board.flat().every(cell => cell !== null)) return 'Nobody';
 
-        return winnerRow || winnerColumn || winnerDiagonalsTopLeft || winnerDiagonalTopRight || null;
+        const winner = winnerRow || winnerColumn || winnerDiagonalsTopLeft || winnerDiagonalTopRight;
+        if (winner) setWinner(winner);         
 
-    }, [board, checkRows, checkColumns, checkDiagonalsTopLeft, checkDiagonalsTopRight]);
-
-
-    useEffect(() => {
-        function checkGameOver() {
-            const winner = checkWinnerOrDraw();
-            if (winner) {
-                console.log("setting winner");
-                setWinner(winner);
-            }
-        }
-        checkGameOver();
-    }, [board, checkWinnerOrDraw]);
+    }, [board, checkRows, checkColumns, checkDiagonalsTopLeft, checkDiagonalsTopRight]);    
 
     return (
         <div className='flex flex-col *:justify-center'>
