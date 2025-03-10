@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState, useCallback } from 'react';
 import StartButton from '@/components/ui/buttons/start-button';
-import { get } from 'http';
+
 export default function Connect4() {
 
     const [board, setBoard] = useState(Array(6).fill(null).map(() => Array(7).fill(null)));
@@ -35,13 +35,13 @@ export default function Connect4() {
         console.log("running checkWinnerOrDraw");
         const winnerRow = checkRows();
         const winnerColumn = checkColumns();
+        const winnerDiagonalsTopLeft = checkDiagonalsTopLeft();
+        const winnerDiagonalTopRight = checkDiagonalsTopRight();
 
         if (board.flat().every(cell => cell !== null)) return 'Nobody';
 
-        if (winnerRow) return winnerRow;
-        if (winnerColumn) return winnerColumn;
-
-        return null;
+        return winnerRow || winnerColumn || winnerDiagonalsTopLeft || winnerDiagonalTopRight || null;
+        
     }, [board]);
 
     function checkRows() {
@@ -62,6 +62,26 @@ export default function Connect4() {
         for (let i = 0; i < 3; i++) {
             for (let j = 0; j < 7; j++) {
                 if (board[i][j] === board[i + 1][j] && board[i][j] === board[i + 2][j] && board[i][j] === board[i + 3][j] && board[i][j] !== null && board[i][j] !== 0) {
+                    return board[i][j];
+                }
+            }
+        }
+    }
+
+    function checkDiagonalsTopLeft() {
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 4; j++) {
+                if (board[i][j] === board[i + 1][j + 1] && board[i][j] === board[i + 2][j + 2] && board[i][j] === board[i + 3][j + 3] && board[i][j] !== null && board[i][j] !== 0) {
+                    return board[i][j];
+                }
+            }
+        }
+    }
+
+    function checkDiagonalsTopRight() {
+        for (let i = 0; i < 3; i++) {
+            for (let j = 6; j > 2; j--) {
+                if (board[i][j] === board[i + 1][j - 1] && board[i][j] === board[i + 2][j - 2] && board[i][j] === board[i + 3][j - 3] && board[i][j] !== null && board[i][j] !== 0) {
                     return board[i][j];
                 }
             }
