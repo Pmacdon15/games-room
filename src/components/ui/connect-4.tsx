@@ -1,6 +1,7 @@
 'use client'
-import React, { useState, useCallback } from 'react';
+import { useState } from 'react';
 import StartButton from '@/components/ui/buttons/start-button';
+import { checkWinnerOrDraw, getLowestEmptyRow } from '@/lib/utils/connect4-utils';
 
 export default function Connect4() {
 
@@ -15,79 +16,15 @@ export default function Connect4() {
     };
 
     const handleCellClick = (rowIndex: number, cellIndex: number) => {
-        if (winner || board[rowIndex][cellIndex]) return;
-        const lowestEmptyRow = getLowestEmptyRow(cellIndex);
+        if (winner) return;
+        const lowestEmptyRow = getLowestEmptyRow({board, column: cellIndex});
         const newBoard = [...board];
         newBoard[lowestEmptyRow][cellIndex] = isPlayer1Turn ? 'X' : 'O';
         setBoard(newBoard);
         setIsPlayer1Turn(!isPlayer1Turn);
-        checkWinnerOrDraw();      
+        const playerWinner = checkWinnerOrDraw(board);
+        if (playerWinner) setWinner(playerWinner);
     };
-
-    const getLowestEmptyRow = (column: number) => {
-        for (let i = 5; i >= 0; i--) {
-            if (board[i][column] === null) return i;
-        }
-        return -1;
-    };
-
-    const checkRows = useCallback((): string | undefined => {
-        console.log("running checkRows");
-        for (let i = 0; i < 6; i++) {
-            for (let j = 0; j < 4; j++) {
-                console.log("checking row", i, j);
-                console.log(board[i][j], board[i][j + 1], board[i][j + 2], board[i][j + 3]);
-                if (board[i][j] === board[i][j + 1] && board[i][j] === board[i][j + 2] && board[i][j] === board[i][j + 3] && board[i][j] !== null && board[i][j] !== 0) {
-                    console.log("returning winner");
-                    return board[i][j];
-                }
-            }
-        }
-    }, [board]);
-
-    const checkColumns = useCallback((): string | undefined => {
-        for (let i = 0; i < 3; i++) {
-            for (let j = 0; j < 7; j++) {
-                if (board[i][j] === board[i + 1][j] && board[i][j] === board[i + 2][j] && board[i][j] === board[i + 3][j] && board[i][j] !== null && board[i][j] !== 0) {
-                    return board[i][j];
-                }
-            }
-        }
-    }, [board]);
-
-    const checkDiagonalsTopLeft = useCallback((): string | undefined => {
-        for (let i = 0; i < 3; i++) {
-            for (let j = 0; j < 4; j++) {
-                if (board[i][j] === board[i + 1][j + 1] && board[i][j] === board[i + 2][j + 2] && board[i][j] === board[i + 3][j + 3] && board[i][j] !== null && board[i][j] !== 0) {
-                    return board[i][j];
-                }
-            }
-        }
-    }, [board]);
-
-    const checkDiagonalsTopRight = useCallback((): string | undefined => {
-        for (let i = 0; i < 3; i++) {
-            for (let j = 6; j > 2; j--) {
-                if (board[i][j] === board[i + 1][j - 1] && board[i][j] === board[i + 2][j - 2] && board[i][j] === board[i + 3][j - 3] && board[i][j] !== null && board[i][j] !== 0) {
-                    return board[i][j];
-                }
-            }
-        }
-    }, [board]);
-
-    const checkWinnerOrDraw = useCallback(() => {
-        console.log("running checkWinnerOrDraw");
-        const winnerRow = checkRows();
-        const winnerColumn = checkColumns();
-        const winnerDiagonalsTopLeft = checkDiagonalsTopLeft();
-        const winnerDiagonalTopRight = checkDiagonalsTopRight();
-
-        if (board.flat().every(cell => cell !== null)) return 'Nobody';
-
-        const winner = winnerRow || winnerColumn || winnerDiagonalsTopLeft || winnerDiagonalTopRight;
-        if (winner) setWinner(winner);         
-
-    }, [board, checkRows, checkColumns, checkDiagonalsTopLeft, checkDiagonalsTopRight]);    
 
     return (
         <div className='flex flex-col *:justify-center'>
