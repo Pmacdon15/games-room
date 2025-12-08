@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://www.gamesroom.patmac.ca
+Host: https://www.gamesroom.patmac.cause
 
 # Sitemaps
-Sitemap: https://www.gamesroom.patmac.ca/sitemap.xml
+Sitemap: https://www.gamesroom.patmac.cause/sitemap.xml
