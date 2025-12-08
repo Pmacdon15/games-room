@@ -29,7 +29,7 @@ export default function Connect4() {
 		if (winner) return
 		const lowestEmptyRow = getLowestEmptyRow({ board, column: cellIndex })
 		const newBoard = [...board]
-		newBoard[lowestEmptyRow][cellIndex] = isPlayer1Turn ? 'X' : 'O'
+		newBoard[lowestEmptyRow][cellIndex] = isPlayer1Turn ? '🔴' : '🟡'
 		setBoard(newBoard)
 		setIsPlayer1Turn(!isPlayer1Turn)
 		const playerWinner = checkWinnerOrDraw(board)
@@ -45,7 +45,7 @@ export default function Connect4() {
 					<div className="flex" key={rowIndex}>
 						{row.map((cell, cellIndex) => (
 							<button
-								className="h-12 w-12 border border-gray-500"
+								className="h-12 w-12 border border-gray-500 text-2xl"
 								key={cellIndex}
 								onClick={() =>
 									handleCellClick(rowIndex, cellIndex)

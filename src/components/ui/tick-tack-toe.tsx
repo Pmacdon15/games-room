@@ -47,7 +47,7 @@ export default function TickTackToe() {
 		if (winner || board[index]) return
 
 		const newBoard = [...board]
-		newBoard[index] = isPlayer1Turn ? 'X' : 'O'
+		newBoard[index] = isPlayer1Turn ? '❌' : '⭕'
 		setBoard(newBoard)
 		setIsPlayer1Turn(!isPlayer1Turn)
 	}
