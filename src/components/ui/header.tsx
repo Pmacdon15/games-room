@@ -1,5 +1,5 @@
 export default function header() {
-    return (
-        <h1 className="mt-8 text-4xl text-center">Welcome to the Game Room</h1>
-    );
-};
+	return (
+		<h1 className="mt-8 text-center text-4xl">Welcome to the Game Room</h1>
+	)
+}

@@ -1,148 +1,159 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  /* Vibrant Color Palette - No Purple! */
-  --coral: #FF6B6B;
-  --coral-light: #FF8787;
-  --coral-dark: #EE5A52;
-  
-  --teal: #4ECDC4;
-  --teal-light: #6FD9D1;
-  --teal-dark: #45B7AF;
-  
-  --amber: #FFD93D;
-  --amber-light: #FFE066;
-  --amber-dark: #F5C518;
-  
-  --emerald: #6BCF7F;
-  --emerald-light: #8ADB9A;
-  --emerald-dark: #5AB96D;
-  
-  --sky: #5DADE2;
-  --sky-light: #7EC0EB;
-  --sky-dark: #4A9BD4;
-  
-  --pink: #FF85A1;
-  --pink-light: #FFA3B8;
-  --pink-dark: #F76D8E;
-  
-  /* Neutral Colors */
-  --background: #FAFBFC;
-  --foreground: #2C3E50;
-  --card-bg: rgba(255, 255, 255, 0.95);
-  --shadow: rgba(0, 0, 0, 0.1);
+	/* Vibrant Color Palette - No Purple! */
+	--coral: #ff6b6b;
+	--coral-light: #ff8787;
+	--coral-dark: #ee5a52;
+
+	--teal: #4ecdc4;
+	--teal-light: #6fd9d1;
+	--teal-dark: #45b7af;
+
+	--amber: #ffd93d;
+	--amber-light: #ffe066;
+	--amber-dark: #f5c518;
+
+	--emerald: #6bcf7f;
+	--emerald-light: #8adb9a;
+	--emerald-dark: #5ab96d;
+
+	--sky: #5dade2;
+	--sky-light: #7ec0eb;
+	--sky-dark: #4a9bd4;
+
+	--pink: #ff85a1;
+	--pink-light: #ffa3b8;
+	--pink-dark: #f76d8e;
+
+	/* Neutral Colors */
+	--background: #fafbfc;
+	--foreground: #2c3e50;
+	--card-bg: rgba(255, 255, 255, 0.95);
+	--shadow: rgba(0, 0, 0, 0.1);
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #1A1D29;
-    --foreground: #E8EAED;
-    --card-bg: rgba(42, 46, 61, 0.95);
-    --shadow: rgba(0, 0, 0, 0.3);
-  }
+	:root {
+		--background: #1a1d29;
+		--foreground: #e8eaed;
+		--card-bg: rgba(42, 46, 61, 0.95);
+		--shadow: rgba(0, 0, 0, 0.3);
+	}
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
 }
 
 body {
-  color: var(--foreground);
-  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  min-height: 100vh;
-  position: relative;
-  overflow-x: hidden;
+	position: relative;
+	min-height: 100vh;
+	overflow-x: hidden;
+	font-family:
+		"Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	color: var(--foreground);
 }
 
 /* Animated Gradient Background */
 body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  background: 
-    radial-gradient(circle at 20% 30%, var(--coral) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, var(--teal) 0%, transparent 50%),
-    radial-gradient(circle at 40% 80%, var(--amber) 0%, transparent 50%),
-    radial-gradient(circle at 90% 70%, var(--emerald) 0%, transparent 50%),
-    radial-gradient(circle at 10% 90%, var(--sky) 0%, transparent 50%),
-    var(--background);
-  background-size: 200% 200%;
-  animation: gradientShift 20s ease infinite;
-  opacity: 0.4;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+	content: "";
+	background:
+		radial-gradient(circle at 20% 30%, var(--coral) 0%, transparent 50%),
+		radial-gradient(circle at 80% 20%, var(--teal) 0%, transparent 50%),
+		radial-gradient(circle at 40% 80%, var(--amber) 0%, transparent 50%),
+		radial-gradient(circle at 90% 70%, var(--emerald) 0%, transparent 50%),
+		radial-gradient(circle at 10% 90%, var(--sky) 0%, transparent 50%),
+		var(--background);
+	background-size: 200% 200%;
+	opacity: 0.4;
+	animation: gradientShift 20s ease infinite;
 }
 
 @keyframes gradientShift {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  25% {
-    background-position: 50% 25%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  75% {
-    background-position: 50% 75%;
-  }
+	0%,
+	100% {
+		background-position: 0% 50%;
+	}
+	25% {
+		background-position: 50% 25%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	75% {
+		background-position: 50% 75%;
+	}
 }
 
 /* Floating Shapes Background */
 body::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  background-image: 
-    radial-gradient(circle, var(--pink) 2px, transparent 2px),
-    radial-gradient(circle, var(--teal) 1.5px, transparent 1.5px),
-    radial-gradient(circle, var(--amber) 1px, transparent 1px);
-  background-size: 100px 100px, 150px 150px, 80px 80px;
-  background-position: 0 0, 40px 60px, 130px 270px;
-  opacity: 0.15;
-  animation: floatShapes 30s linear infinite;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+	content: "";
+	background-image:
+		radial-gradient(circle, var(--pink) 2px, transparent 2px),
+		radial-gradient(circle, var(--teal) 1.5px, transparent 1.5px),
+		radial-gradient(circle, var(--amber) 1px, transparent 1px);
+	background-position:
+		0 0,
+		40px 60px,
+		130px 270px;
+	background-size:
+		100px 100px,
+		150px 150px,
+		80px 80px;
+	opacity: 0.15;
+	animation: floatShapes 30s linear infinite;
 }
 
 @keyframes floatShapes {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(-100px);
-  }
+	0% {
+		transform: translateY(0);
+	}
+	100% {
+		transform: translateY(-100px);
+	}
 }
 
 /* Smooth Transitions */
 * {
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease,
+		transform 0.2s ease;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+	width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--background);
+	background: var(--background);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--coral), var(--teal));
-  border-radius: 10px;
+	background: linear-gradient(180deg, var(--coral), var(--teal));
+	border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, var(--coral-dark), var(--teal-dark));
+	background: linear-gradient(180deg, var(--coral-dark), var(--teal-dark));
 }
