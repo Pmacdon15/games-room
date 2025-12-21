@@ -15,7 +15,7 @@ const Footer = () => {
 							>
 								patrick@patmac.ca
 							</Link>
-						</div>						
+						</div>
 						<div className="flex items-center gap-2">
 							<MapPin className="h-4 w-4" />
 							<Link

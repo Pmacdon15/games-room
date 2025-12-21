@@ -9,7 +9,7 @@ export default function Home() {
 			{/* Hero Section */}
 			<div className="flex flex-col items-center justify-center px-4 py-12 md:py-20">
 				<h1
-					className="mb-4 animate-pulse bg-gradient-to-r from-[#FF6B6B] via-[#4ECDC4] to-[#FFD93D] bg-clip-text text-center font-bold text-5xl text-transparent md:text-7xl"
+					className="mb-4 animate-pulse bg-linear-to-r from-[#FF6B6B] via-[#4ECDC4] to-[#FFD93D] bg-clip-text text-center font-bold text-5xl text-transparent md:text-7xl"
 					style={{ fontFamily: "'Fredoka', sans-serif" }}
 				>
 					🎮 Games Room 🎮
@@ -22,9 +22,9 @@ export default function Home() {
 				<div className="grid w-full max-w-4xl grid-cols-1 gap-8 md:grid-cols-2">
 					{/* Tic Tac Toe Card */}
 					<Link className="group" href="/games/tick-tack-toe">
-						<div className="relative overflow-hidden rounded-3xl border-4 border-[#FF6B6B]/30 bg-white/80 p-8 shadow-xl backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-[#FF6B6B] hover:shadow-2xl dark:bg-[#2A2E3D]/80">
+						<div className="relative overflow-hidden rounded-3xl border-4 border-[#FF6B6B]/30 bg-white/80 p-10 shadow-xl backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-[#FF6B6B] hover:shadow-2xl dark:bg-[#2A2E3D]/80">
 							{/* Decorative gradient overlay */}
-							<div className="absolute inset-0 bg-gradient-to-br from-[#FF6B6B]/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+							<div className="absolute inset-0 bg-linear-to-br from-[#FF6B6B]/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
 
 							<div className="relative z-10">
 								<div className="mb-4 transform text-6xl transition-transform duration-300 group-hover:scale-110">
@@ -51,7 +51,7 @@ export default function Home() {
 							</div>
 
 							{/* Animated corner accent */}
-							<div className="-translate-y-8 group-hover:-translate-y-4 absolute top-0 right-0 h-24 w-24 translate-x-8 transform rounded-bl-full bg-[#FF6B6B]/20 transition-transform duration-300 group-hover:translate-x-4"></div>
+							<div className="absolute top-0 right-0 h-24 w-24 translate-x-8 -translate-y-8 transform rounded-bl-full bg-[#FF6B6B]/20 transition-transform duration-300 group-hover:translate-x-4 group-hover:-translate-y-4"></div>
 						</div>
 					</Link>
 
@@ -59,7 +59,7 @@ export default function Home() {
 					<Link className="group" href="/games/connect-4">
 						<div className="relative overflow-hidden rounded-3xl border-4 border-[#4ECDC4]/30 bg-white/80 p-8 shadow-xl backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-[#4ECDC4] hover:shadow-2xl dark:bg-[#2A2E3D]/80">
 							{/* Decorative gradient overlay */}
-							<div className="absolute inset-0 bg-gradient-to-br from-[#4ECDC4]/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+							<div className="absolute inset-0 bg-linear-to-br from-[#4ECDC4]/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
 
 							<div className="relative z-10">
 								<div className="mb-4 transform text-6xl transition-transform duration-300 group-hover:scale-110">
@@ -86,14 +86,14 @@ export default function Home() {
 							</div>
 
 							{/* Animated corner accent */}
-							<div className="-translate-y-8 group-hover:-translate-y-4 absolute top-0 right-0 h-24 w-24 translate-x-8 transform rounded-bl-full bg-[#4ECDC4]/20 transition-transform duration-300 group-hover:translate-x-4"></div>
+							<div className="absolute top-0 right-0 h-24 w-24 translate-x-8 -translate-y-8 transform rounded-bl-full bg-[#4ECDC4]/20 transition-transform duration-300 group-hover:translate-x-4 group-hover:-translate-y-4"></div>
 						</div>
 					</Link>
 				</div>
 
 				{/* Fun floating badge */}
 				<div className="mt-16 rounded-full border-2 border-[#FFD93D]/50 bg-white/60 px-6 py-3 shadow-lg backdrop-blur-md dark:bg-[#2A2E3D]/60">
-					<p className="bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] bg-clip-text font-semibold text-lg text-transparent">
+					<p className="bg-linear-to-r from-[#FF6B6B] to-[#4ECDC4] bg-clip-text font-semibold text-lg text-transparent">
 						✨ Created for fun! ✨
 					</p>
 				</div>
