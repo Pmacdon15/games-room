@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import StartButton from '@/components/ui/buttons/start-button'
 import {
 	checkWinnerOrDraw,
@@ -14,6 +14,11 @@ export default function Connect4() {
 	)
 	const [isPlayer1Turn, setIsPlayer1Turn] = useState(true)
 	const [winner, setWinner] = useState<string | null>(null)
+	const [droppingPiece, setDroppingPiece] = useState<{
+		row: number
+		col: number
+		player: string | null
+	}>({ row: -1, col: -1, player: null })
 
 	const handleReset = () => {
 		setBoard(
@@ -23,24 +28,52 @@ export default function Connect4() {
 		)
 		setIsPlayer1Turn(true)
 		setWinner(null)
+		setDroppingPiece({ row: -1, col: -1, player: null })
 	}
 
 	const handleCellClick = (_rowIndex: number, cellIndex: number) => {
 		if (winner) return
 		const lowestEmptyRow = getLowestEmptyRow({ board, column: cellIndex })
-		const newBoard = [...board]
-		newBoard[lowestEmptyRow][cellIndex] = isPlayer1Turn ? '🔴' : '🟡'
-		setBoard(newBoard)
-		setIsPlayer1Turn(!isPlayer1Turn)
-		const playerWinner = checkWinnerOrDraw(board)
-		if (playerWinner) setWinner(playerWinner)
+		const player = isPlayer1Turn ? '🔴' : '🟡'
+		setDroppingPiece({ row: 0, col: cellIndex, player })
 	}
+
+	useEffect(() => {
+		if (droppingPiece.player) {
+			const timer = setTimeout(() => {
+				const lowestEmptyRow = getLowestEmptyRow({
+					board,
+					column: droppingPiece.col,
+				})
+				const newBoard = [...board]
+				newBoard[lowestEmptyRow][droppingPiece.col] = droppingPiece.player
+				setBoard(newBoard)
+				setIsPlayer1Turn(!isPlayer1Turn)
+				const playerWinner = checkWinnerOrDraw(newBoard)
+				if (playerWinner) setWinner(playerWinner)
+				setDroppingPiece({ row: -1, col: -1, player: null })
+			}, 500) // adjust the delay to control the drop speed
+			return () => clearTimeout(timer)
+		}
+	}, [droppingPiece, board, isPlayer1Turn])
 
 	return (
 		<div className="flex flex-col *:justify-center">
 			<h1 className="mt-12 text-center text-4xl">Connect Four</h1>
 			<StartButton resetGame={handleReset} />
-			<div>
+			<div className="relative">
+				{droppingPiece.player && (
+					<div
+						className="absolute z-10 text-2xl"
+						style={{							
+							left: droppingPiece.col * 48 + 8, // adjust based on cell size
+							transition: 'top 0.5s',
+							top: droppingPiece.row * 48 + 8, // adjust based on cell size
+						}}
+					>
+						{droppingPiece.player}
+					</div>
+				)}
 				{board.map((row, rowIndex) => (
 					<div className="flex" key={rowIndex}>
 						{row.map((cell, cellIndex) => (
