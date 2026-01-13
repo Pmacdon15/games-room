@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import StartButton from '@/components/ui/buttons/start-button'
 import {
 	checkWinnerOrDraw,
@@ -33,7 +33,7 @@ export default function Connect4() {
 
 	const handleCellClick = (_rowIndex: number, cellIndex: number) => {
 		if (winner) return
-		const lowestEmptyRow = getLowestEmptyRow({ board, column: cellIndex })
+		// const lowestEmptyRow = getLowestEmptyRow({ board, column: cellIndex })
 		const player = isPlayer1Turn ? '🔴' : '🟡'
 		setDroppingPiece({ row: 0, col: cellIndex, player })
 	}
@@ -46,7 +46,8 @@ export default function Connect4() {
 					column: droppingPiece.col,
 				})
 				const newBoard = [...board]
-				newBoard[lowestEmptyRow][droppingPiece.col] = droppingPiece.player
+				newBoard[lowestEmptyRow][droppingPiece.col] =
+					droppingPiece.player
 				setBoard(newBoard)
 				setIsPlayer1Turn(!isPlayer1Turn)
 				const playerWinner = checkWinnerOrDraw(newBoard)
@@ -61,11 +62,15 @@ export default function Connect4() {
 		<div className="flex flex-col *:justify-center">
 			<h1 className="mt-12 text-center text-4xl">Connect Four</h1>
 			<StartButton resetGame={handleReset} />
+			<div className="text-center text-2xl">
+				{' '}
+				{isPlayer1Turn ? "🔴's" : "🟡's"} Turn{' '}
+			</div>
 			<div className="relative">
 				{droppingPiece.player && (
 					<div
 						className="absolute z-10 text-2xl"
-						style={{							
+						style={{
 							left: droppingPiece.col * 48 + 8, // adjust based on cell size
 							transition: 'top 0.5s',
 							top: droppingPiece.row * 48 + 8, // adjust based on cell size
@@ -74,6 +79,7 @@ export default function Connect4() {
 						{droppingPiece.player}
 					</div>
 				)}
+
 				{board.map((row, rowIndex) => (
 					<div className="flex" key={rowIndex}>
 						{row.map((cell, cellIndex) => (
