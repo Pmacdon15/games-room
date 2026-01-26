@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { alphabet, words } from '@/lib/utils/words'
+import { HangmanDrawing } from './hangman-drawing'
 
 export default function HangMan() {
 	const getRandomWord = () => words[Math.floor(Math.random() * words.length)]
@@ -10,25 +11,70 @@ export default function HangMan() {
 	const [guessedLetters, setGuessedLetters] = useState<string[]>([])
 
 	const lettersOfWord = word.split('')
+	const incorrectLetters = guessedLetters.filter(
+		(letter) => !word.includes(letter),
+	)
 
-	const handleGuess = (letter: string) => {
-		if (guessedLetters.includes(letter)) return
-		setGuessedLetters((prev) => [...prev, letter])
-	}
+	const isLoser = incorrectLetters.length >= 6
+	const isWinner = lettersOfWord.every((letter) =>
+		guessedLetters.includes(letter),
+	)
+
+	const handleGuess = useCallback(
+		(letter: string) => {
+			if (guessedLetters.includes(letter) || isLoser || isWinner) return
+			setGuessedLetters((prev) => [...prev, letter])
+		},
+		[guessedLetters, isLoser, isWinner],
+	)
+
+	useEffect(() => {
+		const handler = (e: KeyboardEvent) => {
+			const key = e.key.toLowerCase()
+			if (!key.match(/^[a-z]$/)) return
+
+			e.preventDefault()
+			handleGuess(key)
+		}
+
+		document.addEventListener('keypress', handler)
+
+		return () => {
+			document.removeEventListener('keypress', handler)
+		}
+	}, [handleGuess])
 
 	return (
 		<div className="flex w-full flex-col items-center *:justify-center">
 			<h1 className="mt-12 text-center text-4xl">Hang Man</h1>
 
 			{/* WORD DISPLAY */}
-			<div className="container mt-8 flex flex-col items-center gap-4 rounded-sm bg-white p-8">
+			<div className="container mt-8 flex flex-col items-center gap-8 rounded-sm bg-white p-8">
+				<div className="flex flex-col items-center gap-4">
+					<div className="font-bold text-2xl text-black">
+						{isWinner && 'Winner! - Refresh to try again'}
+						{isLoser && 'Nice Try - Refresh to try again'}
+					</div>
+					<HangmanDrawing numberOfGuesses={incorrectLetters.length} />
+				</div>
+
 				<div className="mt-6 flex max-w-md flex-wrap justify-center gap-2">
 					{lettersOfWord.map((letter, index) => (
 						<div
 							className="w-8 border-black border-b-2 text-center text-2xl text-black"
 							key={index}
 						>
-							{guessedLetters.includes(letter) ? letter : ''}
+							<span
+								className={
+									!guessedLetters.includes(letter) && isLoser
+										? 'text-red-500'
+										: 'text-black'
+								}
+							>
+								{guessedLetters.includes(letter) || isLoser
+									? letter
+									: ''}
+							</span>
 						</div>
 					))}
 				</div>
