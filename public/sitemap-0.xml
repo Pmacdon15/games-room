@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://www.gamesroom.patmac.cause/games/connect-4</loc><lastmod>2026-01-13T05:37:12.757Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.gamesroom.patmac.cause/games/tick-tack-toe</loc><lastmod>2026-01-13T05:37:12.757Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.gamesroom.patmac.ca/games/connect-4</loc><lastmod>2026-01-27T00:10:15.741Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.gamesroom.patmac.ca/games/hang-man</loc><lastmod>2026-01-27T00:10:15.741Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.gamesroom.patmac.ca/games/tick-tack-toe</loc><lastmod>2026-01-27T00:10:15.741Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.gamesroom.patmac.ca</loc><lastmod>2026-01-27T00:10:15.741Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 </urlset>
