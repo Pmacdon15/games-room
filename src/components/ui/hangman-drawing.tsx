@@ -16,28 +16,28 @@ const BODY = (
 
 const RIGHT_ARM = (
 	<div
-		className="absolute top-[125px] right-[-95px] h-[10px] w-[100px] origin-left rotate-[-30deg] bg-black"
+		className="absolute top-[125px] right-[-80px] h-[10px] w-[85px] origin-left rotate-[-30deg] bg-black"
 		key="right-arm"
 	/>
 )
 
 const LEFT_ARM = (
 	<div
-		className="absolute top-[125px] right-[5px] h-[10px] w-[100px] origin-right rotate-[30deg] bg-black"
+		className="absolute top-[125px] right-[5px] h-[10px] w-[85px] origin-right rotate-[30deg] bg-black"
 		key="left-arm"
 	/>
 )
 
 const RIGHT_LEG = (
 	<div
-		className="absolute top-[185px] right-[-95px] h-[10px] w-[100px] origin-left rotate-[60deg] bg-black"
+		className="absolute top-[185px] right-[-80px] h-[10px] w-[85px] origin-left rotate-[60deg] bg-black"
 		key="right-leg"
 	/>
 )
 
 const LEFT_LEG = (
 	<div
-		className="absolute top-[185px] right-[5px] h-[10px] w-[100px] origin-right rotate-[-60deg] bg-black"
+		className="absolute top-[185px] right-[5px] h-[10px] w-[85px] origin-right rotate-[-60deg] bg-black"
 		key="left-leg"
 	/>
 )

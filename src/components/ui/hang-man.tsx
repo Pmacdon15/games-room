@@ -46,10 +46,10 @@ export default function HangMan() {
 
 	return (
 		<div className="flex w-full flex-col items-center *:justify-center">
-			<h1 className="mt-12 text-center text-4xl">Hang Man</h1>
+			<h1 className="mt-2 text-center text-4xl">Hang Man</h1>
 
 			{/* WORD DISPLAY */}
-			<div className="container mt-8 flex flex-col items-center gap-8 rounded-sm bg-white p-8">
+			<div className="container mt-4 flex flex-col items-center gap-8 rounded-sm bg-white/40 p-8">
 				<div className="flex flex-col items-center gap-4">
 					<div className="font-bold text-2xl text-black">
 						{isWinner && 'Winner! - Refresh to try again'}
