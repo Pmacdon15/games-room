@@ -1,5 +1,7 @@
-import { Github, Linkedin, Mail, MapPin } from 'lucide-react'
+import { Mail, MapPin } from 'lucide-react'
 import Link from 'next/link'
+import { LinkedInIcon } from './icon.linked-in'
+import { GitHubIcon } from './icons.github'
 
 const Footer = () => {
 	return (
@@ -34,14 +36,15 @@ const Footer = () => {
 							rel="noopener noreferrer"
 							target="_blank"
 						>
-							<Github className="h-6 w-6" />
+							<GitHubIcon className="h-6 w-6" />
 						</Link>
 						<Link
 							href="https://www.linkedin.com/in/patrick-macdonald-231640285/"
 							rel="noopener noreferrer"
 							target="_blank"
 						>
-							<Linkedin className="h-6 w-6" />
+							
+							<div className='w-6 h-6'><LinkedInIcon /></div>
 						</Link>
 					</div>
 				</div>
