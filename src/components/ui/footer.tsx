@@ -43,8 +43,9 @@ const Footer = () => {
 							rel="noopener noreferrer"
 							target="_blank"
 						>
-							
-							<div className='w-6 h-6'><LinkedInIcon /></div>
+							<div className="h-6 w-6">
+								<LinkedInIcon />
+							</div>
 						</Link>
 					</div>
 				</div>
